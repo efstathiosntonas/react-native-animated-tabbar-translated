@@ -8,5 +8,3 @@ import {i18nextOptions} from './src/utils/18n';
 i18next.use(initReactI18next).init(i18nextOptions);
 
 AppRegistry.registerComponent(appName, () => App);
-
-export default i18next;

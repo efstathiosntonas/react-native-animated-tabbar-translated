@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-import i18next from '../../index';
 import {useTranslation} from 'react-i18next';
+import {useI18n} from '../utils/i18nContext';
 
 const List = () => {
+  const {language, setLanguage} = useI18n();
   const {t} = useTranslation();
-  const [language, setLanguage] = useState('');
+
+  const handleChangeLanguage = () => {
+    setLanguage(language === 'en' ? 'el' : 'en');
+  };
 
   return (
     <View style={{alignItems: 'center'}}>
@@ -17,10 +21,7 @@ const List = () => {
           marginVertical: 10,
           width: 200,
         }}
-        onPress={async () => {
-          await i18next.changeLanguage(language === 'en' ? 'el' : 'en');
-          setLanguage(language === 'en' ? 'el' : 'en');
-        }}>
+        onPress={handleChangeLanguage}>
         <Text style={{alignSelf: 'center'}}>{t('DEMO.CHANGE_LANGUAGE')}</Text>
       </TouchableOpacity>
     </View>

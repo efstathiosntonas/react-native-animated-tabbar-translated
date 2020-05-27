@@ -6,6 +6,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import {translate} from './utils/18n';
 import List from './screens/List';
 import Map from './screens/Map';
+import { useI18n } from './utils/i18nContext';
 
 const Tab = createBottomTabNavigator();
 const MapStack = createStackNavigator();
@@ -29,7 +30,7 @@ const ListStackScreen = () => {
 };
 
 const tabs = {
-  [translate('TABS.MAP')]: {
+  'TABS.MAP': {
     labelStyle: {
       color: '#5B37B7',
     },
@@ -43,7 +44,7 @@ const tabs = {
       inactiveColor: 'rgba(223,215,243,0)',
     },
   },
-  [translate('TABS.LIST')]: {
+  'TABS.LIST': {
     labelStyle: {
       color: '#1194AA',
     },
@@ -60,6 +61,7 @@ const tabs = {
 };
 
 const Tabs = () => {
+  useI18n();
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -69,8 +71,16 @@ const Tabs = () => {
         safeAreaInset: {top: 'never', bottom: 'never'},
       }}
       tabBar={(props) => <AnimatedTabBar tabs={tabs} {...props} />}>
-      <Tab.Screen name={translate('TABS.MAP')} component={MapStackScreen} />
-      <Tab.Screen name={translate('TABS.LIST')} component={ListStackScreen} />
+      <Tab.Screen
+        name="TABS.MAP"
+        options={{tabBarLabel: translate('TABS.MAP')}}
+        component={MapStackScreen}
+      />
+      <Tab.Screen
+        name="TABS.LIST"
+        options={{tabBarLabel: translate('TABS.LIST')}}
+        component={ListStackScreen}
+      />
     </Tab.Navigator>
   );
 };
