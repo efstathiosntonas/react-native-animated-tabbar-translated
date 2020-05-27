@@ -1,0 +1,11 @@
+{
+  "TABS": {
+    "LIST": "List",
+    "MAP": "Map",
+  },
+  "DEMO": {
+    "YOU_ARE_ON_LIST": "You are in List",
+    "YOU_ARE_ON_MAP": "You are on map",
+    "CHANGE_LANGUAGE": "Change Language"
+  }
+}
