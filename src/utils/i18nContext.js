@@ -1,4 +1,10 @@
-import React, {createContext, useState, useContext, useEffect} from 'react';
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import i18next from 'i18next';
 
@@ -11,20 +17,20 @@ const I18nContext = createContext({
 
 const I18nProvider = ({children}) => {
   const [language, setLanguage] = useState(DEFAULT_LANGUAGE);
-
   useEffect(() => {
-    AsyncStorage.getItem('language').then((_lang) => {
-      if (_lang) {
-        setLanguage(_lang);
+    AsyncStorage.getItem('language').then((_language) => {
+      if (_language) {
+        changeLanguage(_language);
       }
     });
+  }, [changeLanguage]);
+
+  const changeLanguage = useCallback((_language) => {
+    i18next.changeLanguage(_language).then(() => setLanguage(_language));
   }, []);
 
-  useEffect(() => {
-    i18next.changeLanguage(language).catch((error) => console.log(error));
-  }, [language]);
   return (
-    <I18nContext.Provider value={{language, setLanguage}}>
+    <I18nContext.Provider value={{language, setLanguage: changeLanguage}}>
       {children}
     </I18nContext.Provider>
   );

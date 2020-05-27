@@ -6,7 +6,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import {translate} from './utils/18n';
 import List from './screens/List';
 import Map from './screens/Map';
-import { useI18n } from './utils/i18nContext';
+import {useI18n} from './utils/i18nContext';
 
 const Tab = createBottomTabNavigator();
 const MapStack = createStackNavigator();
@@ -61,7 +61,8 @@ const tabs = {
 };
 
 const Tabs = () => {
-  useI18n();
+  const {language} = useI18n();
+  console.log('language', language);
   return (
     <Tab.Navigator
       tabBarOptions={{
