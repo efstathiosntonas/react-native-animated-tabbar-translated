@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-import i18next from '../../index';
 import {useTranslation} from 'react-i18next';
 import {useI18n} from '../utils/i18nContext';
 
